@@ -19,25 +19,25 @@ module.exports = function(app) {
         .catch(err => {
             console.log(err);
         })
-    })
+    });
 
     app.post("/api/workouts", (req, res) => {
         db.Workout.create(req.body)
-        .then(createdWorkout => {
-            res.json(createdWorkout);
+        .then(dbWorkout => {
+            res.json(dbWorkout);
         })
         .catch(err => {
             res.json(err);
         })
-    })
+    });
 
     app.get("/api/workouts/range", (req,res) => {
         db.Workout.find()
-        .then(data => {
-            res.json(data)
+        .then(dbWorkout => {
+            res.json(dbWorkout)
         })
         .catch(err => {
             console.log(err)
         })
-    })
-}
+    });
+};
