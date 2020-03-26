@@ -15,7 +15,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+
+// (require("./routes/api-routes.js"))(app);
+// (require("./routes/html.js"))(app);
+
  const db = require('./models')
+
 app.get("/", (req, res) => {
     res.sendFile (path.join(__dirname,"./public/index.html"))
 })
