@@ -16,24 +16,24 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
-// (require("./routes/api-routes.js"))(app);
-// (require("./routes/html.js"))(app);
+app.use(require("./routes/html-routes.js"))
+require("./routes/api-routes.js")(app);
 
  const db = require('./models')
 
-app.get("/", (req, res) => {
-    res.sendFile (path.join(__dirname,"./public/index.html"))
-})
-app.get("/api/workouts", (req, res)=>{
-    db.Workout.find()
-    .then(workoutResults=>{
-        console.log(workoutResults)
-        res.json(workoutResults)
-    })
-    .catch(
-        err=>res.json(err)
-    )
-})
+// app.get("/", (req, res) => {
+//     res.sendFile (path.join(__dirname,"./public/index.html"))
+// })
+// app.get("/api/workouts", (req, res)=>{
+//     db.Workout.find()
+//     .then(workoutResults=>{
+//         console.log(workoutResults)
+//         res.json(workoutResults)
+//     })
+//     .catch(
+//         err=>res.json(err)
+//     )
+// })
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
